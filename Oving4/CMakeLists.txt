@@ -60,7 +60,7 @@ MACRO(ADD_APP APP SOURCES)
 ENDMACRO(ADD_APP)
 
 # Add a program consisting of these sources
-ADD_APP(main main.c)
+ADD_APP(serial serial.c)
 #ADD_APP(mpi-splitv ex4-mpisplit.c)
 
 
