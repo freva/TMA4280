@@ -4,9 +4,15 @@
 #include "common.h"
 
 
-int main(int argc, char** argv) {
+int main() {
+    for(int i=8; i<=16384; i*=2) {
+        vecSum(i);
+    }
+}
+
+
+void vecSum(int N) {
     double vectorSum = 0, pi = 4.0*atan(1.0);
-    int N = atoi(argv[1]);
     Vector vector = createVector(N);
 
     for (long int i=1; i<=N; i++) {
@@ -16,6 +22,6 @@ int main(int argc, char** argv) {
     }
 
 
-    printf("Vector sum: %f\n", vectorSum);
-    printf("Difference: %1.16f\n", pi*pi/6.0 - vectorSum);
+    printf("N = %d | Vector sum: %f\n", N, vectorSum);
+    printf("Difference: %1.16f\n\n", pi*pi/6.0 - vectorSum);
 }
