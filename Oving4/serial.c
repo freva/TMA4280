@@ -1,14 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include "common.h"
-
-
-int main() {
-    for(int i=8; i<=16384; i*=2) {
-        vecSum(i);
-    }
-}
+#include "../common/common.h"
 
 
 void vecSum(int N) {
@@ -24,4 +17,11 @@ void vecSum(int N) {
 
     printf("N = %d | Vector sum: %f\n", N, vectorSum);
     printf("Difference: %1.16f\n\n", pi*pi/6.0 - vectorSum);
+}
+
+
+int main(int argc, char** argv) {
+    for(int i=8; i<=16384; i*=2) {
+        vecSum(i);
+    }
 }
