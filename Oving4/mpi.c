@@ -9,10 +9,10 @@ void vecSum(int N, int nproc, int myid) {
     int n = N/nproc;
     
     MPI_Status status;
-    Vector myVector = createVector(n);
     if(myid == 0) {
         Vector allElements = createVector(N);
 
+		#pragma omp parallel for schedule(static)
         for(int i=1; i<=N; i++) {
             allElements->data[i] = 1.0/(i*i);
         }
@@ -22,8 +22,8 @@ void vecSum(int N, int nproc, int myid) {
         }
     }
 
+    Vector myVector = createVector(n);
     MPI_Recv(myVector->data, n, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD, &status);
-
 
 
     for (int i=0; i<n; i++) {
