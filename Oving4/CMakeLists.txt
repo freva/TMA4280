@@ -61,9 +61,8 @@ ENDMACRO(ADD_APP)
 
 # Add a program consisting of these sources
 ADD_APP(serial serial.c)
-#ADD_APP(mpi-splitv ex4-mpisplit.c)
 
 
-#IF(OPENMP_FOUND)
-#  ADD_APP(omp2k ex4-omp2k.c)
-#ENDIF(OPENMP_FOUND)
+IF(OPENMP_FOUND)
+  ADD_APP(openmp openmp.c)
+ENDIF(OPENMP_FOUND)
