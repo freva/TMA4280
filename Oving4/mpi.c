@@ -6,14 +6,28 @@
 
 void vecSum(int N, int nproc, int myid) {
     double vectorSum = 0, pi = 4.0*atan(1.0), mySum = 0;
-    int *ofs, *cols;
-    //splitVector(N, nproc, &cols, &ofs);
-    //Vector vector = createVector(cols[myid]);
+    int n = N/nproc;
+    
+    MPI_Status status;
+    Vector myVector = createVector(n);
+    if(myid == 0) {
+        Vector allElements = createVector(N);
 
-    for (long int i=myid+1; i<=N; i+=nproc) {
-        double temp=1.0/(i*i);
-        //vector->data[i] = temp;
-        mySum += temp;
+        for(int i=1; i<=N; i++) {
+            allElements->data[i] = 1.0/(i*i);
+        }
+
+        for(int proc=0; proc < nproc; proc++) {
+            MPI_Send(&(allElements->data[proc*n]), n, MPI_DOUBLE, proc, 1, MPI_COMM_WORLD);
+        }
+    }
+
+    MPI_Recv(myVector->data, n, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD, &status);
+
+
+
+    for (int i=0; i<n; i++) {
+        mySum += myVector->data[i];
     }
 
     MPI_Reduce(&mySum, &vectorSum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
