@@ -26,5 +26,5 @@ int main() {
         vecSum(i);
     }
 	
-	printf("In %1.2f", WallTime() - startTime);
+	printf("Finished in %1.2f\n", WallTime() - startTime);
 }
