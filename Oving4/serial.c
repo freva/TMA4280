@@ -20,8 +20,11 @@ void vecSum(int N) {
 }
 
 
-int main(int argc, char** argv) {
+int main() {
+	double startTime = WallTime();
     for(int i=8; i<=16384; i*=2) {
         vecSum(i);
     }
+	
+	printf("In %1.2f", WallTime() - startTime);
 }
