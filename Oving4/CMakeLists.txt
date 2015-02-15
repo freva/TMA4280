@@ -61,6 +61,7 @@ ENDMACRO(ADD_APP)
 
 # Add a program consisting of these sources
 ADD_APP(serial serial.c)
+ADD_APP(mpi mpi.c)
 
 
 IF(OPENMP_FOUND)
