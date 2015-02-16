@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <mpi.h>
 #include "../common/common.h"
 
 
@@ -26,6 +27,7 @@ void vecSum(int N, int nproc, int myid) {
     MPI_Recv(myVector->data, n, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD, &status);
 
 
+    #pragma omp parallel for schedule(static) reduction(+:mySum)
     for (int i=0; i<n; i++) {
         mySum += myVector->data[i];
     }
