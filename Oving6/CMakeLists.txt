@@ -38,14 +38,8 @@ add_library(common fst.f)
 # The C based poisson application
 add_executable(poisson poisson.c)
 
-# The Fortran based poisson application
-add_executable(poisson-f poisson.f)
-
 # Link to libraries
 target_link_libraries(poisson common ${DEPLIBS_C})
 
 # We want to link this as a C program
 set_target_properties(poisson PROPERTIES LINKER_LANGUAGE C)
-
-# Link to libraries
-target_link_libraries(poisson-f common ${DEPLIBS_F})
